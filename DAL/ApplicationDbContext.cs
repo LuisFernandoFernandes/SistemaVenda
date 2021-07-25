@@ -1,10 +1,5 @@
 ﻿using SistemaVenda.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Entity
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaVenda.DAL
 {
@@ -17,19 +12,21 @@ namespace SistemaVenda.DAL
         public DbSet<Venda> Venda { get; set; }
         public DbSet<VendaProdutos> VendaProdutos { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
 
-            modelBuilder.Entity<VendaProdutos>().HasKey(x => new { x.CodigoVenda, x.CodigoProduto });
+            builder.Entity<VendaProdutos>().HasKey(x => new { x.CodigoVenda, x.CodigoProduto });
 
-            modelBuilder.Entity<VendaProdutos>()
-                 .HasRequired(x => x.Venda)
+            builder.Entity<VendaProdutos>()
+                 .HasOne(x => x.Venda)
                  .WithMany(y => y.Produtos)
                  .HasForeignKey(x => x.CodigoVenda);
 
-            modelBuilder.Entity<VendaProdutos>()
-                 .HasRequired(x => x.Produto)
+            builder.Entity<VendaProdutos>()
+                 .HasOne(x => x.Produto)
                  .WithMany(y => y.Vendas)
                  .HasForeignKey(x => x.CodigoProduto);
 
