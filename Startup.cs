@@ -31,7 +31,7 @@ namespace SistemaVenda
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer("Server=.;Database=Estoque;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            options.UseSqlServer(@"Server=LUIS-PC\SQLEXPRESS2;Database=Estoque;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();

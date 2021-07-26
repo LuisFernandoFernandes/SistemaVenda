@@ -29,8 +29,6 @@ namespace SistemaVenda.DAL
                  .HasOne(x => x.Produto)
                  .WithMany(y => y.Vendas)
                  .HasForeignKey(x => x.CodigoProduto);
-
-
         }
     }
 }
