@@ -26,8 +26,8 @@ namespace SistemaVenda.Controllers
         public IActionResult Index()
         {
             Categoria objCategoria = Repositorio.Categoria.Where(x => x.Codigo == 1).FirstOrDefault();
-            objCategoria.Descricao = "Bebidas";
-            Repositorio.Entry(objCategoria).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Repositorio.Attach(objCategoria);
+            Repositorio.Remove(objCategoria);
             Repositorio.SaveChanges();
 
             return View();
