@@ -15,10 +15,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+@foreach (var item in Model)
         {
-            <tr onclick="Editar(@item.Codigo)" style="cursor:pointer;" >
-                <td>@item.Codigo</td>
+        <tr onclick="Editar(@item.Codigo)" style="cursor:pointer;">
+            <td>@item.Codigo</td>
                 <td>@item.Descricao</td>
             </tr>
         }
@@ -30,9 +30,9 @@
 
 <script>
     function Editar(Codigo) {
-        window.location = window.origin + "\\Categoria\\Cadastro" + Codigo;
+        window.location = window.origin + "\\Categoria\\Cadastro\\" + Codigo;
     }
     function Cadastrar() {
         window.location = window.origin + "\\Categoria\\Cadastro";
     }
-</script>
+</script> 
