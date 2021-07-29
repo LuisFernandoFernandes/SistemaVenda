@@ -20,15 +20,22 @@ namespace SistemaVenda.DAL
 
             builder.Entity<VendaProdutos>().HasKey(x => new { x.CodigoVenda, x.CodigoProduto });
 
-            builder.Entity<VendaProdutos>()
-                 .HasOne(x => x.Venda)
-                 .WithMany(y => y.Produtos)
-                 .HasForeignKey(x => x.CodigoVenda);
+            //
+            builder.Entity<Venda>()
+                .HasMany<VendaProdutos>(x => x.Produtos)
+                .WithOne(x => x.Venda)
+                .HasForeignKey(x => x.CodigoVenda);
 
             builder.Entity<VendaProdutos>()
-                 .HasOne(x => x.Produto)
-                 .WithMany(y => y.Vendas)
-                 .HasForeignKey(x => x.CodigoProduto);
+                .HasOne<Produto>(x => x.Produto)
+                .WithMany(x => x.Vendas)
+                .HasForeignKey(x => x.CodigoProduto);
+
+            //.WithMany(y => y.Vendas)
+
+            //builder.Entity<VendaProdutos>()
+            //     .HasOne(x => x.Produto)                 
+            //     .HasForeignKey(x => x.CodigoProduto);
         }
     }
 }
