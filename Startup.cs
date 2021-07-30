@@ -31,7 +31,7 @@ namespace SistemaVenda
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(@"Server=LUIS-PC\SQLEXPRESS2;Database=Estoque;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSession();
@@ -46,17 +46,15 @@ namespace SistemaVenda
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
