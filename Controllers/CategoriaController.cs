@@ -12,9 +12,9 @@ namespace SistemaVenda.Controllers
 {
     public class CategoriaController : Controller
     {
-        protected IApplicationDbContext mContext;
+        protected ApplicationDbContext mContext;
 
-        public CategoriaController(IApplicationDbContext context)
+        public CategoriaController(ApplicationDbContext context)
         {
             mContext = context;
         }
