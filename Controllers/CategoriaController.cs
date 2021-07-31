@@ -24,8 +24,6 @@ namespace SistemaVenda.Controllers
 
         public IActionResult Index()
         {
-            //IEnumerable<Categoria> lista = mContext.Categoria.ToList();
-            //mContext.Dispose();
             return View(ServicoAplicacaoCategoria.Listagem());
         }
 
@@ -36,35 +34,17 @@ namespace SistemaVenda.Controllers
 
             if (id != null)
             {
-                var entidade = mContext.Categoria.Where(x => x.Codigo == id).FirstOrDefault();
-                viewModel.Codigo = entidade.Codigo;
-                viewModel.Descricao = entidade.Descricao;
+                viewModel = ServicoAplicacaoCategoria.CarregarRegistro((int)id);
             }
-
             return View(viewModel);
         }
 
         [HttpPost]
         public IActionResult Cadastro(CategoriaViewModel entidade)
         {
-            //validação do DataAnnotations [Required]
             if (ModelState.IsValid)
             {
-                Categoria objCategoria = new Categoria()
-                {   //se código for diferente de nulo, será um item ja existente
-                    Codigo = entidade.Codigo,
-                    Descricao = entidade.Descricao
-                };
-
-                if (entidade.Codigo == null)
-                {
-                    mContext.Categoria.Add(objCategoria);
-                }
-                else
-                {
-                    mContext.Entry(objCategoria).State = EntityState.Modified;
-                }
-                mContext.SaveChanges();
+                ServicoAplicacaoCategoria.Cadastrar(entidade);
             }
             else
             {
@@ -77,10 +57,7 @@ namespace SistemaVenda.Controllers
         [HttpGet]
         public IActionResult Excluir(int id)
         {
-            var ent = new Categoria() { Codigo = id };
-            mContext.Attach(ent);
-            mContext.Remove(ent);
-            mContext.SaveChanges();
+            ServicoAplicacaoCategoria.Excluir(id);
             return RedirectToAction("Index");
         }
 
