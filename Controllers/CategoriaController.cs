@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aplicacao.Servico.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaVenda.DAL;
 using SistemaVenda.Entidades;
@@ -12,18 +13,20 @@ namespace SistemaVenda.Controllers
 {
     public class CategoriaController : Controller
     {
-        protected ApplicationDbContext mContext;
+        readonly ApplicationDbContext mContext;
+        readonly IServicoAplicacaoCategoria ServicoAplicacaoCategoria;
 
-        public CategoriaController(ApplicationDbContext context)
+        public CategoriaController(ApplicationDbContext context, IServicoAplicacaoCategoria servicoAplicacaoCategoria)
         {
             mContext = context;
+            ServicoAplicacaoCategoria = servicoAplicacaoCategoria;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Categoria> lista = mContext.Categoria.ToList();
-            mContext.Dispose();
-            return View(lista);
+            //IEnumerable<Categoria> lista = mContext.Categoria.ToList();
+            //mContext.Dispose();
+            return View(ServicoAplicacaoCategoria.Listagem());
         }
 
         [HttpGet]

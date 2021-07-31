@@ -5,6 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SistemaVenda.DAL;
 using Microsoft.EntityFrameworkCore;
+using Aplicacao.Servico.Interfaces;
+using Aplicacao.Servico;
+using Dominio.Interfaces;
+using Dominio.Servicos;
 
 namespace SistemaVenda
 {
@@ -24,6 +28,10 @@ namespace SistemaVenda
             options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
             services.AddHttpContextAccessor();
             services.AddSession();
+            //Aplicação
+            services.AddScoped<IServicoAplicacaoCategoria, ServicoAplicacaoCategoria>();
+            //Domínio
+            services.AddScoped<IServicoCategoria, ServicoCategoria>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
