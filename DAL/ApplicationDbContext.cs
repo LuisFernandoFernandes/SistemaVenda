@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SistemaVenda.DAL
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Produto> Produto { get; set; }

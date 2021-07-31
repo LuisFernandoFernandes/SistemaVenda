@@ -9,6 +9,8 @@ using Aplicacao.Servico.Interfaces;
 using Aplicacao.Servico;
 using Dominio.Interfaces;
 using Dominio.Servicos;
+using Dominio.Repositorio;
+using Repositorio.Entidades;
 
 namespace SistemaVenda
 {
@@ -24,14 +26,21 @@ namespace SistemaVenda
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
+            //provisorio
+            services.AddDbContext<Repositorio.Contexto.ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MyStock")));
+
             services.AddHttpContextAccessor();
             services.AddSession();
             //Aplicação
             services.AddScoped<IServicoAplicacaoCategoria, ServicoAplicacaoCategoria>();
             //Domínio
             services.AddScoped<IServicoCategoria, ServicoCategoria>();
+            //Repositório
+            services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
