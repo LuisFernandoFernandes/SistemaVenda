@@ -37,10 +37,13 @@ namespace SistemaVenda
             services.AddSession();
             //Aplicação
             services.AddScoped<IServicoAplicacaoCategoria, ServicoAplicacaoCategoria>();
+            services.AddScoped<IServicoAplicacaoCliente, ServicoAplicacaoCliente>();
             //Domínio
             services.AddScoped<IServicoCategoria, ServicoCategoria>();
+            services.AddScoped<IServicoCliente, ServicoCliente>();
             //Repositório
             services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
+            services.AddScoped<IRepositorioCliente, RepositorioCliente>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
