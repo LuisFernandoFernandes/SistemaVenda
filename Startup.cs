@@ -38,12 +38,18 @@ namespace SistemaVenda
             //Aplicação
             services.AddScoped<IServicoAplicacaoCategoria, ServicoAplicacaoCategoria>();
             services.AddScoped<IServicoAplicacaoCliente, ServicoAplicacaoCliente>();
+            services.AddScoped<IServicoAplicacaoProduto, ServicoAplicacaoProduto>();
+            services.AddScoped<IServicoAplicacaoProduto, ServicoAplicacaoProduto>();
             //Domínio
             services.AddScoped<IServicoCategoria, ServicoCategoria>();
             services.AddScoped<IServicoCliente, ServicoCliente>();
+            services.AddScoped<IServicoProduto, ServicoProduto>();
+            services.AddScoped<IServicoProduto, ServicoProduto>();
             //Repositório
             services.AddScoped<IRepositorioCategoria, RepositorioCategoria>();
             services.AddScoped<IRepositorioCliente, RepositorioCliente>();
+            services.AddScoped<IRepositorioProduto, RepositorioProduto>();
+            services.AddScoped<IRepositorioProduto, RepositorioProduto>();
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
