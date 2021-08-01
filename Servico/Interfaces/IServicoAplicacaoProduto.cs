@@ -1,4 +1,5 @@
-﻿using SistemaVenda.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SistemaVenda.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Aplicacao.Servico.Interfaces
 {
     public interface IServicoAplicacaoProduto
     {
+        IEnumerable<SelectListItem> ListaProdutosDropDownList();
         public IEnumerable<ProdutoViewModel> Listagem();
 
         ProdutoViewModel CarregarRegistro(int codigoProduto);

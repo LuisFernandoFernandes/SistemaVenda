@@ -18,7 +18,6 @@ namespace Aplicacao.Servico
         {
             ServicoCliente = servicoCliente;
         }
-
         public IEnumerable<SelectListItem> ListaClientesDropDownList()
         {
             List<SelectListItem> retorno = new List<SelectListItem>();
@@ -34,7 +33,6 @@ namespace Aplicacao.Servico
                 };
                 retorno.Add(cliente);
             }
-
             return retorno;
         }
 
