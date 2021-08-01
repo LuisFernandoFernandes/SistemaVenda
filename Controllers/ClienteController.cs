@@ -13,12 +13,10 @@ namespace SistemaVenda.Controllers
 {
     public class ClienteController : Controller
     {
-        readonly ApplicationDbContext mContext;
         readonly IServicoAplicacaoCliente ServicoAplicacaoCliente;
 
-        public ClienteController(ApplicationDbContext context, IServicoAplicacaoCliente servicoAplicacaoCliente)
+        public ClienteController(IServicoAplicacaoCliente servicoAplicacaoCliente)
         {
-            mContext = context;
             ServicoAplicacaoCliente = servicoAplicacaoCliente;
         }
 

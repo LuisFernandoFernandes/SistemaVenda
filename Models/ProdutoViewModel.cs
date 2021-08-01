@@ -11,7 +11,7 @@ namespace SistemaVenda.Models
     {
         public int? Codigo { get; set; }
 
-        [Required(ErrorMessage ="Informe a Descrição do Produto!")]
+        [Required(ErrorMessage = "Informe a Descrição do Produto!")]
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Informe a Quantidade em Estoque do Produto!")]
@@ -20,8 +20,11 @@ namespace SistemaVenda.Models
         [Required(ErrorMessage = "Informe o Valor unitário do Produto!")]
         [Range(0.1, Double.PositiveInfinity)]
         public decimal? Valor { get; set; }
+
         [Required(ErrorMessage = "Informe a Categoria do Produto!")]
         public int? CodigoCategoria { get; set; }
         public IEnumerable<SelectListItem> ListaCategorias { get; set; }
+
+        public string DescricaoCategoria { get; set; }
     }
 }

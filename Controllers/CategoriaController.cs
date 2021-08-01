@@ -13,12 +13,10 @@ namespace SistemaVenda.Controllers
 {
     public class CategoriaController : Controller
     {
-        readonly ApplicationDbContext mContext;
         readonly IServicoAplicacaoCategoria ServicoAplicacaoCategoria;
 
-        public CategoriaController(ApplicationDbContext context, IServicoAplicacaoCategoria servicoAplicacaoCategoria)
+        public CategoriaController(IServicoAplicacaoCategoria servicoAplicacaoCategoria)
         {
-            mContext = context;
             ServicoAplicacaoCategoria = servicoAplicacaoCategoria;
         }
 
